@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .mask-home-hero {
+    mask-image: linear-gradient(to bottom, black 0%, black 82%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 82%, transparent 100%);
+  }
+
+  .bg-section-three {
+    background-image:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      linear-gradient(180deg, rgba(19, 19, 19, 0) 14.65%, rgba(72, 159, 232, 0.7) 82.17%),
+      url('/homepage/Section 3/background image.png');
+    background-size: cover, cover, cover;
+    background-position: center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+  }
+
+  .bg-section-four {
+    background-image:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+      linear-gradient(180deg, rgba(19, 19, 19, 0) 14.65%, rgba(72, 159, 232, 0.7) 82.17%),
+      url('/homepage/Section 4/background.png');
+    background-size: cover, cover, cover;
+    background-position: center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+  }
+
+  .bg-start-company {
+    background-image:
+      linear-gradient(270deg, rgba(0, 0, 0, 0) 16.94%, rgba(0, 0, 0, 0.7) 59.65%),
+      linear-gradient(0deg, rgba(72, 159, 232, 0.56), rgba(72, 159, 232, 0.56)),
+      url('/homepage/Background.png');
+    background-size: cover, cover, cover;
+    background-position: center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+  }
+
+  .bg-why-delaware {
+    background-image:
+      linear-gradient(270deg, rgba(0, 0, 0, 0) 16.94%, rgba(0, 0, 0, 0.7) 59.65%),
+      linear-gradient(0deg, rgba(72, 159, 232, 0.56), rgba(72, 159, 232, 0.56)),
+      url('/homepage/Background.png');
+    background-size: cover, cover, cover;
+    background-position: center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+  }
+
+  .bg-why-delaware-second {
+    background-image:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url('/homepage/Section 4/background.png');
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  .bg-why-delaware-image1 {
+    background-image:
+      linear-gradient(180deg, rgba(19, 19, 19, 0.8) 67.5%, rgba(19, 19, 19, 0) 100%),
+      url('/Why Delaware/image1.png');
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  .bg-footer-image {
+    background-image: url('/homepage/Section 4/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .why-delaware-bleed {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+  }
+
+  .why-delaware-bleed-full {
+    position: relative;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+  }
+
+  .why-delaware-bleed::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background-image: var(
+      --why-delaware-bleed-bg,
+      linear-gradient(0deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+      url('/homepage/Section 4/background.png')
+    );
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    z-index: -1;
+  }
+
+  .why-delaware-bleed::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: radial-gradient(
+        circle at center,
+        rgba(255, 255, 255, 0.28),
+        rgba(255, 255, 255, 0) 70%
+      ),
+      linear-gradient(0deg, rgba(13, 23, 40, 0.25), rgba(13, 23, 40, 0.25));
+    filter: blur(12px);
+    opacity: 0.85;
+    z-index: -1;
+  }
+
+  .why-delaware-bleed-image1 {
+    --why-delaware-bleed-bg: linear-gradient(
+        180deg,
+        rgba(19, 19, 19, 0.8) 67.5%,
+        rgba(19, 19, 19, 0) 100%
+      ),
+      url('/Why Delaware/image1.png');
+  }
+
+  .bg-additional-services {
+    background-image:
+      linear-gradient(0deg, rgba(19, 19, 19, 0.7), rgba(19, 19, 19, 0.7)),
+      url('/Why Delaware/image2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
