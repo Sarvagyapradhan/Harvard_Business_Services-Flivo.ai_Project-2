@@ -1,31 +1,28 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-
-type PageKey =
-  | 'home'
-  | 'startCompany'
-  | 'services'
-  | 'learningCenter'
-  | 'hbsBlog'
-  | 'aboutHbs'
-  | 'makeAnnualPayments'
+import type { PageKey } from '../types/navigation'
 
 interface MakeAnnualPaymentsProps {
   onNavigate?: (destination: PageKey) => void
 }
 
-const paymentSections = [
+const paymentSections: {
+  title: string
+  ctas: { body: string; label: string; destination: PageKey }[]
+}[] = [
   {
     title: 'Franchise Tax Payment',
     ctas: [
       {
         body: 'To pay your annual Delaware Franchise Tax online for one single company, click the button below:',
-        label: 'Pay Your Delaware Franchise Tax Online'
+        label: 'Pay Your Delaware Franchise Tax Online',
+        destination: 'franchiseSinglePayment'
       },
       {
         body: 'To pay your annual Delaware Franchise Tax online for multiple LLCs/LPs, click the button below:',
-        label: 'Pay Franchise Tax for Multiple LLCs & LPs'
+        label: 'Pay Franchise Tax for Multiple LLCs & LPs',
+        destination: 'franchiseMultiPayment'
       }
     ]
   },
@@ -34,11 +31,13 @@ const paymentSections = [
     ctas: [
       {
         body: 'To pay your annual Registered Agent Fee for one single company, click the button below:',
-        label: 'Pay registered agent fees for Single company'
+        label: 'Pay registered agent fees for Single company',
+        destination: 'agentSinglePayment'
       },
       {
         body: 'To pay your annual Registered Agent Fees for multiple companies/jurisdictions, click the button below:',
-        label: 'Pay registered agent fees for multiple companies'
+        label: 'Pay registered agent fees for multiple companies',
+        destination: 'agentMultiPayment'
       }
     ]
   }
@@ -87,47 +86,46 @@ const MakeAnnualPayments: React.FC<MakeAnnualPaymentsProps> = ({ onNavigate }) =
           <div className="absolute inset-0 bg-[linear-gradient(0deg,_rgba(0,0,0,0.2),_rgba(0,0,0,0.2))]" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(19,19,19,0)_14.65%,_rgba(72,159,232,0.7)_82.17%)]" />
           <div className="relative w-full py-[120px] flex flex-col gap-[76px]">
-            {paymentSections.map((section) => (
+            {paymentSections.map((section, index) => (
               <div key={section.title} className="relative left-1/2 w-screen -translate-x-1/2 px-6 lg:px-12">
-                <div className="w-full max-w-[1440px] mx-auto rounded-[40px] border border-white/30 bg-white/15 backdrop-blur-[32px] shadow-[0px_20px_80px_rgba(3,18,39,0.25)] px-6 sm:px-10 lg:px-16 py-12 lg:py-16 text-white">
-                  <div className="text-center mb-10">
-                    <p className="text-base sm:text-lg font-semibold tracking-wide uppercase text-white/70">
-                      Secure Payments
-                    </p>
-                    <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-bold">{section.title}</h2>
-                  </div>
-
-                  <div className="space-y-10">
-                    {section.ctas.map((cta) => (
-                      <div key={cta.label} className="space-y-4 text-left">
-                        <p className="text-base sm:text-lg text-white/90 leading-relaxed">{cta.body}</p>
-                        <button
-                          type="button"
-                          className="inline-flex items-center gap-3 rounded-2xl border border-white/60 bg-white text-[#1b3554] font-semibold text-sm sm:text-base px-5 py-3 shadow-[0_10px_35px_rgba(6,22,45,0.35)] hover:-translate-y-0.5 hover:bg-blue-50 hover:text-[#1457a5] transition-all duration-300"
-                        >
-                          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#eaf3ff] text-[#2d98ef] shadow-inner">
-                            <svg
-                              width="18"
-                              height="18"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                            >
-                              <path
-                                d="M10 1.5L12.4721 6.60081L18 7.47214L13.75 11.6279L14.9443 17.25L10 14.4L5.05573 17.25L6.25 11.6279L2 7.47214L7.52786 6.60081L10 1.5Z"
-                                stroke="currentColor"
-                                strokeWidth="1.5"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </span>
-                          <span className="underline decoration-transparent hover:decoration-current transition-colors">
-                            {cta.label}
-                          </span>
-                        </button>
-                      </div>
-                    ))}
+                <div className="relative w-full max-w-[1440px] mx-auto">
+                   <div className={`absolute ${index === 0 ? '-top-24' : '-top-20'} left-1/2 -translate-x-1/2 text-center`}>
+                      <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-bold text-white tracking-tight">{section.title}</h2>
+                   </div>
+                  <div className={`rounded-[40px] border border-white/30 bg-white/15 backdrop-blur-[32px] shadow-[0px_20px_80px_rgba(3,18,39,0.25)] px-6 sm:px-10 lg:px-16 pt-16 pb-10 text-white ${index === 0 ? 'mt-2' : 'mt-6'}`}>
+                    <div className="space-y-10 text-[22px] sm:text-[24px] leading-relaxed">
+                      {section.ctas.map((cta) => (
+                        <div key={cta.label} className="space-y-4 text-left">
+                          <p className="text-[22px] sm:text-[24px] text-white/90 leading-relaxed">{cta.body}</p>
+                          <button
+                            type="button"
+                            className="inline-flex items-center gap-3 rounded-2xl border border-white/60 bg-white text-[rgba(72,159,232,1)] font-semibold text-xl sm:text-2xl px-6 py-5 shadow-[0_10px_35px_rgba(6,22,45,0.35)] hover:-translate-y-0.5 hover:bg-blue-50 hover:text-[#1457a5] transition-all duration-300"
+                            onClick={() => onNavigate?.(cta.destination)}
+                          >
+                            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#eaf3ff] text-[#2d98ef] shadow-inner">
+                              <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 20 20"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M10 1.5L12.4721 6.60081L18 7.47214L13.75 11.6279L14.9443 17.25L10 14.4L5.05573 17.25L6.25 11.6279L2 7.47214L7.52786 6.60081L10 1.5Z"
+                                  stroke="currentColor"
+                                  strokeWidth="1.5"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                />
+                              </svg>
+                            </span>
+                            <span className="underline decoration-transparent hover:decoration-current transition-colors">
+                              {cta.label}
+                            </span>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
