@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
-type PageKey =
-  | 'home'
-  | 'startCompany'
-  | 'services'
-  | 'learningCenter'
-  | 'hbsBlog'
-  | 'aboutHbs'
-  | 'makeAnnualPayments'
+import type { PageKey } from '../types/navigation'
 
 interface NavbarProps {
   onNavigate?: (destination: PageKey) => void

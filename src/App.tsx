@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import Home from './components/Home'
 import StartCompany from './components/StartCompany'
 import Services from './components/Services'
@@ -6,49 +7,56 @@ import LearningCenter from './components/LearningCenter'
 import HBSBlog from './components/HBSBlog'
 import AboutHBS from './components/AboutHBS'
 import MakeAnnualPayments from './components/MakeAnnualPayments'
-
-type PageKey =
-  | 'home'
-  | 'startCompany'
-  | 'services'
-  | 'learningCenter'
-  | 'hbsBlog'
-  | 'aboutHbs'
-  | 'makeAnnualPayments'
+import FranchiseSinglePayment from './components/FranchiseSinglePayment'
+import FranchiseMultiPayment from './components/FranchiseMultiPayment'
+import AgentSinglePayment from './components/AgentSinglePayment'
+import AgentMultiPayment from './components/AgentMultiPayment'
+import NonResidentFormations from './components/NonResidentFormations'
+import type { PageKey } from './types/navigation'
+import { PAGE_PATHS } from './types/navigation'
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<PageKey>('home')
+  const navigate = useNavigate()
 
   const handleNavigate = (destination: PageKey) => {
-    setCurrentPage(destination)
+    const targetPath = PAGE_PATHS[destination] ?? PAGE_PATHS.home
+    navigate(targetPath)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  if (currentPage === 'startCompany') {
-    return <StartCompany onNavigate={handleNavigate} />
-  }
-
-  if (currentPage === 'services') {
-    return <Services onNavigate={handleNavigate} />
-  }
-
-  if (currentPage === 'learningCenter') {
-    return <LearningCenter onNavigate={handleNavigate} />
-  }
-
-  if (currentPage === 'hbsBlog') {
-    return <HBSBlog onNavigate={handleNavigate} />
-  }
-
-  if (currentPage === 'aboutHbs') {
-    return <AboutHBS onNavigate={handleNavigate} />
-  }
-
-  if (currentPage === 'makeAnnualPayments') {
-    return <MakeAnnualPayments onNavigate={handleNavigate} />
-  }
-
-  return <Home onNavigate={handleNavigate} />
+  return (
+    <Routes>
+      <Route path={PAGE_PATHS.home} element={<Home onNavigate={handleNavigate} />} />
+      <Route path={PAGE_PATHS.startCompany} element={<StartCompany onNavigate={handleNavigate} />} />
+      <Route path={PAGE_PATHS.services} element={<Services onNavigate={handleNavigate} />} />
+      <Route path={PAGE_PATHS.learningCenter} element={<LearningCenter onNavigate={handleNavigate} />} />
+      <Route path={PAGE_PATHS.hbsBlog} element={<HBSBlog onNavigate={handleNavigate} />} />
+      <Route path={PAGE_PATHS.aboutHbs} element={<AboutHBS onNavigate={handleNavigate} />} />
+      <Route
+        path={PAGE_PATHS.makeAnnualPayments}
+        element={<MakeAnnualPayments onNavigate={handleNavigate} />}
+      />
+      <Route
+        path={PAGE_PATHS.franchiseSinglePayment}
+        element={<FranchiseSinglePayment onNavigate={handleNavigate} />}
+      />
+      <Route
+        path={PAGE_PATHS.franchiseMultiPayment}
+        element={<FranchiseMultiPayment onNavigate={handleNavigate} />}
+      />
+      <Route
+        path={PAGE_PATHS.agentSinglePayment}
+        element={<AgentSinglePayment onNavigate={handleNavigate} />}
+      />
+      <Route path={PAGE_PATHS.agentMultiPayment} element={<AgentMultiPayment onNavigate={handleNavigate} />} />
+      <Route
+        path={PAGE_PATHS.nonResidentFormations}
+        element={<NonResidentFormations onNavigate={handleNavigate} />}
+      />
+      <Route path="/home" element={<Navigate to={PAGE_PATHS.home} replace />} />
+      <Route path="*" element={<Navigate to={PAGE_PATHS.home} replace />} />
+    </Routes>
+  )
 }
 
 export default App

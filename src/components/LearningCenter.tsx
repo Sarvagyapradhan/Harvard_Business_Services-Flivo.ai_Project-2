@@ -1,15 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-
-type PageKey =
-  | 'home'
-  | 'startCompany'
-  | 'services'
-  | 'learningCenter'
-  | 'hbsBlog'
-  | 'aboutHbs'
-  | 'makeAnnualPayments'
+import type { PageKey } from '../types/navigation'
 
 interface LearningCenterProps {
   onNavigate?: (destination: PageKey) => void
@@ -75,6 +67,7 @@ const learningSections: LearningSection[] = [
       'Create Your Online Stock Ledger',
       'Tax Status for Delaware LLCs',
       'The Corporate Transparency Act',
+      'Delaware Company Formations for Non-Residents',
     ],
   },
   {
@@ -259,6 +252,11 @@ const LearningCenter: React.FC<LearningCenterProps> = ({ onNavigate }) => {
                     {(section.secondaryTopics ?? defaultSecondaryTopics).map((item) => (
                       <button
                         key={`${section.id}-${item}`}
+                        onClick={() => {
+                          if (item === 'Delaware Company Formations for Non-Residents') {
+                            onNavigate?.('nonResidentFormations')
+                          }
+                        }}
                         className={`flex items-center justify-between text-left text-base sm:text-lg font-medium border-b border-white/30 group ${
                           section.id === 1 ? 'pb-2' : 'pb-3'
                         }`}

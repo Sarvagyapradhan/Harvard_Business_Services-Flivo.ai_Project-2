@@ -1,15 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
-
-type PageKey =
-  | 'home'
-  | 'startCompany'
-  | 'services'
-  | 'learningCenter'
-  | 'hbsBlog'
-  | 'aboutHbs'
-  | 'makeAnnualPayments'
+import type { PageKey } from '../types/navigation'
 
 interface HBSBlogProps {
   onNavigate?: (destination: PageKey) => void
