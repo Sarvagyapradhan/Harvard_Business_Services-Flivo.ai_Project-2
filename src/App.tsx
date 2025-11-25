@@ -12,6 +12,9 @@ import FranchiseMultiPayment from './components/FranchiseMultiPayment'
 import AgentSinglePayment from './components/AgentSinglePayment'
 import AgentMultiPayment from './components/AgentMultiPayment'
 import NonResidentFormations from './components/NonResidentFormations'
+import TermsAndConditions from './components/TermsAndConditions'
+import PrivacyPolicy from './components/PrivacyPolicy'
+import GeneralDisclaimer from './components/GeneralDisclaimer'
 import type { PageKey } from './types/navigation'
 import { PAGE_PATHS } from './types/navigation'
 
@@ -53,6 +56,9 @@ function App() {
         path={PAGE_PATHS.nonResidentFormations}
         element={<NonResidentFormations onNavigate={handleNavigate} />}
       />
+      <Route path={PAGE_PATHS.termsAndConditions} element={<TermsAndConditions onNavigate={handleNavigate} />} />
+      <Route path={PAGE_PATHS.privacyPolicy} element={<PrivacyPolicy onNavigate={handleNavigate} />} />
+      <Route path={PAGE_PATHS.generalDisclaimer} element={<GeneralDisclaimer onNavigate={handleNavigate} />} />
       <Route path="/home" element={<Navigate to={PAGE_PATHS.home} replace />} />
       <Route path="*" element={<Navigate to={PAGE_PATHS.home} replace />} />
     </Routes>

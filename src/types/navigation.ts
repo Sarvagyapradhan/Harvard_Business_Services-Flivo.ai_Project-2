@@ -11,6 +11,9 @@ export type PageKey =
   | 'agentSinglePayment'
   | 'agentMultiPayment'
   | 'nonResidentFormations'
+  | 'termsAndConditions'
+  | 'privacyPolicy'
+  | 'generalDisclaimer'
 
 export const PAGE_PATHS: Record<PageKey, string> = {
   home: '/',
@@ -25,4 +28,7 @@ export const PAGE_PATHS: Record<PageKey, string> = {
   agentSinglePayment: '/agent-single-payment',
   agentMultiPayment: '/agent-multi-payment',
   nonResidentFormations: '/delaware-company-formations-for-non-residents',
+  termsAndConditions: '/terms-and-conditions',
+  privacyPolicy: '/privacy-policy',
+  generalDisclaimer: '/general-disclaimer',
 }

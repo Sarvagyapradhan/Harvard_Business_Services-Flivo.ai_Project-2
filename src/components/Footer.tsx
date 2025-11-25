@@ -1,8 +1,24 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { PAGE_PATHS } from '../types/navigation'
+
+interface FooterLink {
+  label: string
+  href?: string
+  to?: string
+}
 
 const Footer: React.FC = () => {
-  const leftColumnLinks: string[] = ['About Us', 'Contact us']
-  const rightColumnLinks: string[] = ['Disclaimer', 'Privacy policy', 'Terms of use', 'Sitemap']
+  const leftColumnLinks: FooterLink[] = [
+    { label: 'About Us', href: '#about-us' },
+    { label: 'Contact us', href: '#contact-us' }
+  ]
+  const rightColumnLinks: FooterLink[] = [
+    { label: 'Disclaimer', to: PAGE_PATHS.generalDisclaimer },
+    { label: 'Privacy policy', to: PAGE_PATHS.privacyPolicy },
+    { label: 'Terms of use', to: PAGE_PATHS.termsAndConditions },
+    { label: 'Sitemap', href: '#sitemap' }
+  ]
 
   return (
     <footer className="w-full text-white py-10 lg:py-12 relative overflow-hidden">
@@ -112,28 +128,48 @@ const Footer: React.FC = () => {
           <div className="grid grid-cols-2 gap-6 lg:gap-8">
             {/* Left Column */}
             <div className="flex flex-col gap-3">
-              {leftColumnLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="text-white hover:text-blue-300 transition-colors duration-300 text-sm lg:text-base"
-                >
-                  {link}
-                </a>
-              ))}
+              {leftColumnLinks.map((link) =>
+                link.to ? (
+                  <Link
+                    key={link.label}
+                    to={link.to}
+                    className="text-white hover:text-blue-300 transition-colors duration-300 text-sm lg:text-base"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href ?? '#'}
+                    className="text-white hover:text-blue-300 transition-colors duration-300 text-sm lg:text-base"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
             </div>
 
             {/* Right Column */}
             <div className="flex flex-col gap-3">
-              {rightColumnLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="text-white hover:text-blue-300 transition-colors duration-300 text-sm lg:text-base"
-                >
-                  {link}
-                </a>
-              ))}
+              {rightColumnLinks.map((link) =>
+                link.to ? (
+                  <Link
+                    key={link.label}
+                    to={link.to}
+                    className="text-white hover:text-blue-300 transition-colors duration-300 text-sm lg:text-base"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={link.label}
+                    href={link.href ?? '#'}
+                    className="text-white hover:text-blue-300 transition-colors duration-300 text-sm lg:text-base"
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
             </div>
           </div>
         </div>
