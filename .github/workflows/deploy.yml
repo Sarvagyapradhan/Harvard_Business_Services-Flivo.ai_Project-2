@@ -1,4 +1,4 @@
-name: Build and push dist to deploy branch
+name: Build and push dist to deploy branch from main
 
 on:
   push:
