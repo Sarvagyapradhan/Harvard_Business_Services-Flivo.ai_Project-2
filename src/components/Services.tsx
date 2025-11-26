@@ -60,6 +60,14 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
     }
   ]
 
+  const handleDomesticPackagesClick = () => {
+    onNavigate?.('domesticFormationPackages')
+  }
+
+  const handleInternationalPackagesClick = () => {
+    onNavigate?.('internationalFormationPackages')
+  }
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-white">
       <Navbar onNavigate={onNavigate} />
@@ -116,7 +124,10 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
                   {/* Right Buttons */}
                   <div className="flex flex-col gap-4 w-full lg:w-[640px] lg:flex-shrink-0 lg:ml-14">
                     {/* Domestic Formation Packages Button */}
-                    <button className="bg-white rounded-lg px-6 py-4 text-left text-[#2d98ef] font-semibold shadow-lg transition-all duration-300 hover:bg-blue-50 hover:text-[#1f7ac4] flex items-center gap-3 border border-[rgba(45,152,239,0.25)]">
+                    <button
+                      className="bg-white rounded-lg px-6 py-4 text-left text-[#2d98ef] font-semibold shadow-lg transition-all duration-300 hover:bg-blue-50 hover:text-[#1f7ac4] flex items-center gap-3 border border-[rgba(45,152,239,0.25)]"
+                      onClick={handleDomesticPackagesClick}
+                    >
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#2d98ef] bg-[#2d98ef]/10 text-[#2d98ef] flex-shrink-0">
                         <svg
                           width="22"
@@ -138,7 +149,10 @@ const Services: React.FC<ServicesProps> = ({ onNavigate }) => {
                     </button>
 
                     {/* International Formation Packages Button */}
-                    <button className="bg-white rounded-lg px-6 py-4 text-left text-[#2d98ef] font-semibold shadow-lg transition-all duration-300 hover:bg-blue-50 hover:text-[#1f7ac4] flex items-center gap-3 border border-[rgba(45,152,239,0.25)]">
+                    <button
+                      className="bg-white rounded-lg px-6 py-4 text-left text-[#2d98ef] font-semibold shadow-lg transition-all duration-300 hover:bg-blue-50 hover:text-[#1f7ac4] flex items-center gap-3 border border-[rgba(45,152,239,0.25)]"
+                      onClick={handleInternationalPackagesClick}
+                    >
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#2d98ef] bg-[#2d98ef]/10 text-[#2d98ef] flex-shrink-0">
                         <svg
                           width="22"

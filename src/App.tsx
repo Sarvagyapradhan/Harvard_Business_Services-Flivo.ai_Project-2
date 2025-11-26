@@ -3,6 +3,8 @@ import { Navigate, Route, Routes, useNavigate } from 'react-router-dom'
 import Home from './components/Home'
 import StartCompany from './components/StartCompany'
 import Services from './components/Services'
+import DomesticFormationPackages from './components/DomesticFormationPackages'
+import InternationalFormationPackages from './components/InternationalFormationPackages'
 import LearningCenter from './components/LearningCenter'
 import HBSBlog from './components/HBSBlog'
 import AboutHBS from './components/AboutHBS'
@@ -15,6 +17,7 @@ import NonResidentFormations from './components/NonResidentFormations'
 import TermsAndConditions from './components/TermsAndConditions'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import GeneralDisclaimer from './components/GeneralDisclaimer'
+import ContactUs from './components/ContactUs'
 import type { PageKey } from './types/navigation'
 import { PAGE_PATHS } from './types/navigation'
 
@@ -32,6 +35,14 @@ function App() {
       <Route path={PAGE_PATHS.home} element={<Home onNavigate={handleNavigate} />} />
       <Route path={PAGE_PATHS.startCompany} element={<StartCompany onNavigate={handleNavigate} />} />
       <Route path={PAGE_PATHS.services} element={<Services onNavigate={handleNavigate} />} />
+      <Route
+        path={PAGE_PATHS.domesticFormationPackages}
+        element={<DomesticFormationPackages onNavigate={handleNavigate} />}
+      />
+      <Route
+        path={PAGE_PATHS.internationalFormationPackages}
+        element={<InternationalFormationPackages onNavigate={handleNavigate} />}
+      />
       <Route path={PAGE_PATHS.learningCenter} element={<LearningCenter onNavigate={handleNavigate} />} />
       <Route path={PAGE_PATHS.hbsBlog} element={<HBSBlog onNavigate={handleNavigate} />} />
       <Route path={PAGE_PATHS.aboutHbs} element={<AboutHBS onNavigate={handleNavigate} />} />
@@ -59,6 +70,7 @@ function App() {
       <Route path={PAGE_PATHS.termsAndConditions} element={<TermsAndConditions onNavigate={handleNavigate} />} />
       <Route path={PAGE_PATHS.privacyPolicy} element={<PrivacyPolicy onNavigate={handleNavigate} />} />
       <Route path={PAGE_PATHS.generalDisclaimer} element={<GeneralDisclaimer onNavigate={handleNavigate} />} />
+      <Route path={PAGE_PATHS.contactUs} element={<ContactUs onNavigate={handleNavigate} />} />
       <Route path="/home" element={<Navigate to={PAGE_PATHS.home} replace />} />
       <Route path="*" element={<Navigate to={PAGE_PATHS.home} replace />} />
     </Routes>

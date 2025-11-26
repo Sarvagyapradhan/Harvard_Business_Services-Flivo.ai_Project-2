@@ -2,6 +2,8 @@ export type PageKey =
   | 'home'
   | 'startCompany'
   | 'services'
+  | 'domesticFormationPackages'
+  | 'internationalFormationPackages'
   | 'learningCenter'
   | 'hbsBlog'
   | 'aboutHbs'
@@ -14,11 +16,14 @@ export type PageKey =
   | 'termsAndConditions'
   | 'privacyPolicy'
   | 'generalDisclaimer'
+  | 'contactUs'
 
 export const PAGE_PATHS: Record<PageKey, string> = {
   home: '/',
   startCompany: '/start-company',
   services: '/services',
+  domesticFormationPackages: '/domestic-formation-packages',
+  internationalFormationPackages: '/international-formation-packages',
   learningCenter: '/learning-center',
   hbsBlog: '/hbs-blog',
   aboutHbs: '/about-hbs',
@@ -31,4 +36,5 @@ export const PAGE_PATHS: Record<PageKey, string> = {
   termsAndConditions: '/terms-and-conditions',
   privacyPolicy: '/privacy-policy',
   generalDisclaimer: '/general-disclaimer',
+  contactUs: '/contact-us',
 }

@@ -10,8 +10,8 @@ interface FooterLink {
 
 const Footer: React.FC = () => {
   const leftColumnLinks: FooterLink[] = [
-    { label: 'About Us', href: '#about-us' },
-    { label: 'Contact us', href: '#contact-us' }
+    { label: 'About Us', to: PAGE_PATHS.aboutHbs },
+    { label: 'Contact us', to: PAGE_PATHS.contactUs }
   ]
   const rightColumnLinks: FooterLink[] = [
     { label: 'Disclaimer', to: PAGE_PATHS.generalDisclaimer },
