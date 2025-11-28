@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, FormEvent, ChangeEvent } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import type { PageKey } from '../types/navigation'
@@ -7,15 +7,94 @@ interface StartCompanyProps {
   onNavigate?: (destination: PageKey) => void
 }
 
+interface FormData {
+  titlePrefix: string
+  firstName: string
+  lastName: string
+  titleSuffix: string
+  email: string
+  verifyEmail: string
+  phoneNumber: string
+  companyType: string
+  companyName: string
+}
+
 const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
+  const [formData, setFormData] = useState<FormData>({
+    titlePrefix: 'Title',
+    firstName: '',
+    lastName: '',
+    titleSuffix: 'Title',
+    email: '',
+    verifyEmail: '',
+    phoneNumber: '',
+    companyType: 'Delaware Limited Liability Company (LLC)',
+    companyName: ''
+  })
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault()
+    
+    if (formData.email !== formData.verifyEmail) {
+        setErrorMessage("Emails do not match")
+        setStatus('error')
+        return
+    }
+
+    setStatus('submitting')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('http://localhost:5000/api/submit-company', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) {
+        throw new Error('Submission failed')
+      }
+
+      setStatus('success')
+      // clear form or redirect
+      alert('Company formation request submitted successfully!')
+      setFormData({
+        titlePrefix: 'Title',
+        firstName: '',
+        lastName: '',
+        titleSuffix: 'Title',
+        email: '',
+        verifyEmail: '',
+        phoneNumber: '',
+        companyType: 'Delaware Limited Liability Company (LLC)',
+        companyName: ''
+      })
+    } catch (error) {
+      console.error(error)
+      setStatus('error')
+      setErrorMessage('Failed to submit form. Please try again.')
+    } finally {
+        setStatus('idle')
+    }
+  }
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-white">
       <Navbar onNavigate={onNavigate} />
       <main className="pt-[72px]">
         <section
-          className="relative w-full overflow-hidden bg-start-company h-[1510px]"
+          className="relative w-full overflow-hidden bg-start-company min-h-screen h-auto pb-20"
         >
-          <div className="absolute inset-0 flex justify-center">
+          <div className="w-full flex justify-center">
             <div className="w-full max-w-[1440px] px-4 sm:px-6 lg:px-10 flex flex-col items-center">
               <h1 className="text-white text-3xl sm:text-4xl lg:text-[40px] font-bold text-center mt-16">
                 Form a Delaware LLC or Corporation!
@@ -34,7 +113,7 @@ const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
                       confirm the details before we file with Delaware.
                     </p>
 
-                    <form className="space-y-6">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                       <div className="grid grid-cols-1 gap-6">
                         <div className="grid grid-cols-1 md:grid-cols-[210px_minmax(0,1fr)] gap-4 items-center border-t border-[#E2E8F0] pt-5">
                           <label className="text-[#0b1524] font-semibold text-[15px]">
@@ -43,25 +122,47 @@ const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
                           <div className="grid grid-cols-1 sm:grid-cols-[120px_minmax(0,1fr)_minmax(0,1fr)_120px] gap-3">
                             <select 
                               aria-label="Title prefix"
+                              name="titlePrefix"
+                              value={formData.titlePrefix}
+                              onChange={handleChange}
                               className="w-full border border-[#CBD5E1] rounded-[14px] px-4 py-3 text-sm text-[#0b1524] font-semibold focus:outline-none focus:ring-2 focus:ring-[#2d98ef]/40 focus:border-[#2d98ef] bg-white"
                             >
                               <option>Title</option>
+                              <option value="Mr.">Mr.</option>
+                              <option value="Mrs.">Mrs.</option>
+                              <option value="Ms.">Ms.</option>
+                              <option value="Dr.">Dr.</option>
                             </select>
                             <input
                               type="text"
+                              name="firstName"
+                              value={formData.firstName}
+                              onChange={handleChange}
                               placeholder="First Name"
+                              required
                               className="w-full border border-[#CBD5E1] rounded-[14px] px-4 py-3 text-sm text-[#0b1524] font-semibold placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#2d98ef]/40 focus:border-[#2d98ef] bg-white"
                             />
                             <input
                               type="text"
+                              name="lastName"
+                              value={formData.lastName}
+                              onChange={handleChange}
                               placeholder="Last Name"
+                              required
                               className="w-full border border-[#CBD5E1] rounded-[14px] px-4 py-3 text-sm text-[#0b1524] font-semibold placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#2d98ef]/40 focus:border-[#2d98ef] bg-white"
                             />
                             <select 
                               aria-label="Title suffix"
+                              name="titleSuffix"
+                              value={formData.titleSuffix}
+                              onChange={handleChange}
                               className="w-full border border-[#CBD5E1] rounded-[14px] px-4 py-3 text-sm text-[#0b1524] font-semibold focus:outline-none focus:ring-2 focus:ring-[#2d98ef]/40 focus:border-[#2d98ef] bg-white"
                             >
                               <option>Title</option>
+                              <option value="Jr.">Jr.</option>
+                              <option value="Sr.">Sr.</option>
+                              <option value="II">II</option>
+                              <option value="III">III</option>
                             </select>
                           </div>
                         </div>
@@ -73,6 +174,10 @@ const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
                           <div className="space-y-2">
                             <input
                               type="email"
+                              name="email"
+                              value={formData.email}
+                              onChange={handleChange}
+                              required
                               placeholder="Enter Your Email Address"
                               className="w-full border border-[#CBD5E1] rounded-[14px] px-4 py-3 text-sm text-[#0b1524] font-semibold placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#2d98ef]/40 focus:border-[#2d98ef] bg-white"
                             />
@@ -88,6 +193,10 @@ const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
                           </label>
                           <input
                             type="email"
+                            name="verifyEmail"
+                            value={formData.verifyEmail}
+                            onChange={handleChange}
+                            required
                             placeholder="Enter Your Email Address"
                             className="w-full border border-[#CBD5E1] rounded-[14px] px-4 py-3 text-sm text-[#0b1524] font-semibold placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#2d98ef]/40 focus:border-[#2d98ef] bg-white"
                           />
@@ -106,6 +215,10 @@ const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
                             </div>
                             <input
                               type="tel"
+                              name="phoneNumber"
+                              value={formData.phoneNumber}
+                              onChange={handleChange}
+                              required
                               placeholder="321 567 889"
                               className="w-full border border-[#CBD5E1] rounded-none rounded-r-[14px] px-4 py-3 text-sm text-[#0b1524] font-semibold placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#2d98ef]/40 focus:border-[#2d98ef] border-l-0 bg-white"
                             />
@@ -130,13 +243,15 @@ const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
                             ].map((option, index) => (
                               <label
                                 key={option}
-                                className="flex items-center justify-between gap-4 px-4 sm:px-6 py-3 hover:bg-[#F8FAFC]"
+                                className="flex items-center justify-between gap-4 px-4 sm:px-6 py-3 hover:bg-[#F8FAFC] cursor-pointer"
                               >
                                 <span className="flex items-center gap-3">
                                   <input
                                     type="radio"
                                     name="companyType"
-                                    defaultChecked={index === 0}
+                                    value={option}
+                                    checked={formData.companyType === option}
+                                    onChange={handleChange}
                                     className="h-5 w-5 accent-[#2d98ef] focus:ring-[#2d98ef]"
                                   />
                                   <span className="text-[#0b1524] font-semibold text-sm sm:text-[15px]">{option}</span>
@@ -177,6 +292,10 @@ const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
                           <div className="space-y-2">
                             <input
                               type="text"
+                              name="companyName"
+                              value={formData.companyName}
+                              onChange={handleChange}
+                              required
                               placeholder="Enter Your Company Name"
                               className="w-full border border-[#CBD5E1] rounded-xl px-4 py-3 text-sm text-[#0b1524] font-semibold placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#2d98ef]/40 focus:border-[#2d98ef] bg-white"
                             />
@@ -189,12 +308,19 @@ const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
                         </div>
                       </div>
 
+                      {errorMessage && (
+                          <div className="text-red-500 text-center font-semibold">
+                              {errorMessage}
+                          </div>
+                      )}
+
                       <div className="flex justify-center pt-2">
                         <button
                           type="submit"
-                          className="bg-[#2d98ef] hover:bg-[#1f7ac4] text-white font-semibold px-10 py-3 rounded-full shadow-lg flex items-center gap-2 transition-transform duration-300 hover:scale-[1.02]"
+                          disabled={status === 'submitting'}
+                          className="bg-[#2d98ef] hover:bg-[#1f7ac4] text-white font-semibold px-10 py-3 rounded-full shadow-lg flex items-center gap-2 transition-transform duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          Continue
+                          {status === 'submitting' ? 'Submitting...' : 'Continue'}
                           <svg
                             width="18"
                             height="18"

@@ -19,10 +19,10 @@ const NonResidentFormations: React.FC<NonResidentFormationsProps> = ({ onNavigat
           
           {/* Hero Content */}
           <div className="relative max-w-[1440px] w-full min-h-[400px] mx-auto px-6 lg:px-12 flex flex-col items-center justify-center text-white pt-20 pb-10">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 max-w-4xl drop-shadow-lg">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-8 max-w-4xl drop-shadow-lg animate-fade-in-up">
               Delaware Company Formations for Non-Residents
             </h1>
-            <button className="bg-white text-[#2D89D8] hover:bg-blue-50 px-8 py-3 rounded-[4px] font-bold text-lg shadow-lg transition flex items-center gap-2 group">
+            <button className="bg-white text-[#2D89D8] hover:bg-blue-50 px-8 py-3 rounded-[4px] font-bold text-lg shadow-lg transition flex items-center gap-2 group animate-fade-in-up delay-100">
               Get Instant Updates
               <span className="text-xl group-hover:translate-x-1 transition-transform">↗</span>
             </button>
@@ -47,17 +47,18 @@ const NonResidentFormations: React.FC<NonResidentFormationsProps> = ({ onNavigat
 
         {/* Replicated Section 2 from AboutHBS */}
         <section className="w-full bg-[#F4F6F9] py-8">
-          <div className="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col justify-start">
-            <div className="flex flex-col lg:flex-row gap-10">
-              <aside className="w-full lg:w-[280px] bg-[#2D89D8] rounded-[4px] px-6 pt-8 pb-[400px] shadow-[0px_12px_30px_rgba(15,23,42,0.16)] h-fit">
+          <div className="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col justify-start min-h-screen h-auto">
+            <div className="flex flex-col lg:flex-row gap-10 items-start">
+              <aside className="w-full lg:w-[280px] bg-[#2D89D8] rounded-[4px] px-6 pt-8 pb-[350px] shadow-[0px_12px_30px_rgba(15,23,42,0.16)] flex-shrink-0 animate-slide-in-left h-fit">
                 {/* Section 1: Delaware Company Formation */}
                 <div className="mb-8">
                   <h3 className="text-white text-2xl font-bold mb-6">Delaware Company Formation</h3>
                   <div className="flex flex-col gap-3">
-                    {['Form a Delaware Company', 'Form a Delaware LLC', 'Free Company Name Check'].map((item) => (
+                    {['Form a Delaware Company', 'Form a Delaware LLC', 'Free Company Name Check'].map((item, idx) => (
                       <button
                         key={item}
-                        className="w-full text-left bg-white text-[#2D89D8] font-semibold rounded-full px-4 py-2 text-sm shadow-[0_6px_18px_rgba(15,23,42,0.12)] hover:bg-blue-50 transition"
+                        style={{ animationDelay: `${idx * 50}ms` }}
+                        className="w-full text-left bg-white text-[#2D89D8] font-semibold rounded-full px-4 py-2 text-sm shadow-[0_6px_18px_rgba(15,23,42,0.12)] hover:bg-blue-50 transition-all duration-300 hover:translate-x-1 animate-fade-in-left fill-mode-backwards"
                       >
                         {item}
                       </button>
@@ -69,10 +70,11 @@ const NonResidentFormations: React.FC<NonResidentFormationsProps> = ({ onNavigat
                 <div className="mb-8">
                   <h3 className="text-white text-2xl font-bold mb-6">Registered Agent Service</h3>
                   <div className="flex flex-col gap-3">
-                    {['Change Your Registered Agent', 'Appoint Registered Agent'].map((item) => (
+                    {['Change Your Registered Agent', 'Appoint Registered Agent'].map((item, idx) => (
                       <button
                         key={item}
-                        className="w-full text-left bg-white text-[#2D89D8] font-semibold rounded-full px-4 py-2 text-sm shadow-[0_6px_18px_rgba(15,23,42,0.12)] hover:bg-blue-50 transition"
+                        style={{ animationDelay: `${(idx + 3) * 50}ms` }}
+                        className="w-full text-left bg-white text-[#2D89D8] font-semibold rounded-full px-4 py-2 text-sm shadow-[0_6px_18px_rgba(15,23,42,0.12)] hover:bg-blue-50 transition-all duration-300 hover:translate-x-1 animate-fade-in-left fill-mode-backwards"
                       >
                         {item}
                       </button>
@@ -93,10 +95,11 @@ const NonResidentFormations: React.FC<NonResidentFormationsProps> = ({ onNavigat
                       'Delaware LLC Operating Agreement Template',
                       'Pay Annual Franchise Tax',
                       'Pay Registered Agent Fee',
-                    ].map((item) => (
+                    ].map((item, idx) => (
                       <button
                         key={item}
-                        className="w-full text-left bg-white text-[#2D89D8] font-semibold rounded-full px-4 py-2 text-sm shadow-[0_6px_18px_rgba(15,23,42,0.12)] hover:bg-blue-50 transition"
+                        style={{ animationDelay: `${(idx + 5) * 50}ms` }}
+                        className="w-full text-left bg-white text-[#2D89D8] font-semibold rounded-full px-4 py-2 text-sm shadow-[0_6px_18px_rgba(15,23,42,0.12)] hover:bg-blue-50 transition-all duration-300 hover:translate-x-1 animate-fade-in-left fill-mode-backwards"
                       >
                         {item}
                       </button>
@@ -105,27 +108,34 @@ const NonResidentFormations: React.FC<NonResidentFormationsProps> = ({ onNavigat
                 </div>
               </aside>
 
-              <div className="flex-1 relative overflow-visible">
-                <div className="pointer-events-none absolute inset-0 bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top]" />
-                <div className="pointer-events-none absolute inset-0 bg-[rgba(0,0,0,0.6)]" />
+              <div className="flex-1 relative overflow-visible animate-fade-in-up delay-200">
+                <div className="pointer-events-none absolute inset-0 bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top] hidden lg:block" />
+                <div className="pointer-events-none absolute inset-0 bg-[rgba(0,0,0,0.6)] hidden lg:block" />
 
-                <div className="pointer-events-none absolute inset-y-0 left-full w-[120vw] bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top]" />
-                <div className="pointer-events-none absolute inset-y-0 left-full w-[120vw] bg-[rgba(0,0,0,0.6)]" />
+                <div className="pointer-events-none absolute inset-y-0 left-full w-[120vw] bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top] hidden lg:block" />
+                <div className="pointer-events-none absolute inset-y-0 left-full w-[120vw] bg-[rgba(0,0,0,0.6)] hidden lg:block" />
+                
+                {/* Mobile background handling */}
+                <div className="pointer-events-none absolute inset-0 bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top] lg:hidden rounded-xl" />
+                <div className="pointer-events-none absolute inset-0 bg-[rgba(0,0,0,0.6)] lg:hidden rounded-xl" />
 
                 <div className="relative z-10 w-full h-full">
                   {/* Heading outside translucent effect */}
-                  <h2 className="text-3xl lg:text-4xl font-bold text-center text-white pt-4 pb-4 drop-shadow-md relative z-20 translate-x-10">
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center text-white pt-4 pb-4 drop-shadow-md relative z-20 lg:translate-x-10">
                     Delaware Company Formations for Non-Residents
                   </h2>
 
                   {/* Glass overlay strip */}
-                  <div className="pointer-events-none absolute left-0 top-20 bottom-10 w-[200vw] bg-[rgba(132,132,132,0.3)] backdrop-blur-[25px] border border-white/20 border-l-transparent border-t-transparent border-b-transparent shadow-[0px_24px_48px_rgba(15,23,42,0.35)]" />
+                  <div className="pointer-events-none absolute left-0 top-20 bottom-10 w-[200vw] bg-[rgba(132,132,132,0.3)] backdrop-blur-[25px] border border-white/20 border-l-transparent border-t-transparent border-b-transparent shadow-[0px_24px_48px_rgba(15,23,42,0.35)] hidden lg:block" />
+                  
+                  {/* Mobile glass overlay */}
+                  <div className="pointer-events-none absolute inset-0 top-0 bottom-0 bg-[rgba(132,132,132,0.3)] backdrop-blur-[25px] border border-white/20 shadow-[0px_24px_48px_rgba(15,23,42,0.35)] lg:hidden rounded-xl" />
 
                   {/* Content on top of the glass panel */}
-                  <div className="relative w-full h-full flex flex-col px-4 sm:px-6 lg:px-10 pt-12 pb-10 text-[#333333]">
+                  <div className="relative w-full h-full flex flex-col px-4 sm:px-6 lg:px-10 pt-10 lg:pt-12 pb-10 text-[#333333]">
                     <div className="flex flex-col gap-8 max-w-3xl mx-auto">
                       
-                      <div className="prose prose-xl max-w-none text-white font-semibold text-2xl">
+                      <div className="prose prose-xl max-w-none text-white font-semibold text-lg sm:text-xl lg:text-2xl">
                         <p className="mb-6">
                           As an aspiring business owner, you may hear stories about the benefits of forming a Delaware company. Delaware's Court of Chancery, flexible corporate structure, and tax advantages are all great reasons to start a Delaware business. And, believe it or not, these benefits are not limited to Delaware residents. In fact, you do not have to live in, or even visit, the State of Delaware to form a Delaware company. Except for residents of restricted countries (such as Cuba, Iran, North Korea, Syria, and Russia), anyone can establish a Delaware corporation or LLC as a non-resident and conduct lawful business activities from anywhere in the world.
                         </p>
@@ -475,7 +485,7 @@ const NonResidentFormations: React.FC<NonResidentFormationsProps> = ({ onNavigat
                         </div>
 
                         {/* Bottom CTA Buttons */}
-                        <div className="flex flex-col gap-4 items-center justify-center mt-8 mb-12">
+                        <div className="flex flex-col gap-4 items-center justify-center mt-8 mb-12 animate-fade-in-up delay-200">
                           <button className="w-full sm:w-auto px-8 py-4 bg-[#2D89D8] text-white font-bold rounded-full shadow-lg hover:bg-[#1a6bb3] transition transform hover:scale-105 text-lg flex items-center justify-center gap-2">
                             Why Form a Delaware LLC? <span className="text-xl">→</span>
                           </button>

@@ -33,6 +33,15 @@ body {
     background-repeat: no-repeat, no-repeat, no-repeat;
   }
 
+  .bg-section-three-mobile {
+    background-image:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      url('/homepage/Section 3/background image.png');
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+  }
+
   .bg-section-four {
     background-image:
       linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
@@ -41,6 +50,15 @@ body {
     background-size: cover, cover, cover;
     background-position: center, center, center;
     background-repeat: no-repeat, no-repeat, no-repeat;
+  }
+
+  .bg-section-four-mobile {
+    background-image:
+      linear-gradient(0deg, rgba(27, 108, 179, 0.6), rgba(27, 108, 179, 0.6)),
+      url('/homepage/Section 4/background.png');
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
   }
 
   .bg-start-company {
@@ -60,7 +78,7 @@ body {
       url('/homepage/Background.png');
     background-size: cover, cover, cover;
     background-position: center, center, center;
-    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-repeat: no-repeat, no-repeat;
   }
 
   .bg-why-delaware-second {
@@ -153,5 +171,13 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  /* Glassmorphism utilities */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 }

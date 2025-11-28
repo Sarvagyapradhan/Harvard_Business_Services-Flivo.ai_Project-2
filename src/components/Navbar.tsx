@@ -80,7 +80,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
           <img
             src="/logo.svg"
             alt="Harvard Business Services logo"
-            className="h-10 w-auto sm:h-12 lg:h-14 xl:h-16 object-contain"
+            className="h-8 sm:h-10 lg:h-14 xl:h-16 w-auto object-contain"
           />
         </button>
 
@@ -124,7 +124,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-white p-2"
+          className="lg:hidden text-white p-2 ml-auto"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
         >
@@ -155,48 +155,46 @@ const Navbar: React.FC<NavbarProps> = ({ onNavigate }) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden mt-4 pb-4 border-t border-blue-400 pt-4">
-          <div className="max-w-[1440px] mx-auto px-6">
-            <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href ?? '#'}
-                  className="text-white hover:text-blue-200 transition-colors duration-300 text-sm font-medium py-2"
-                  onClick={(event) => {
-                    if (link.onClick) {
-                      link.onClick(event)
-                    } else {
-                      setIsMenuOpen(false)
-                    }
-                  }}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <button
-                className="flex items-center justify-center gap-2 bg-white text-[#2d98ef] px-6 py-2.5 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 shadow-sm mt-2"
-                onClick={handleStartCompanyClick}
+        <div className="absolute top-[95px] left-0 w-full bg-[#1b6cb3] lg:hidden border-t border-white/10 shadow-xl max-h-[calc(100vh-95px)] overflow-y-auto">
+          <div className="flex flex-col p-6 gap-4">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href ?? '#'}
+                className="text-white hover:text-blue-200 transition-colors duration-300 text-lg font-medium py-2 border-b border-white/10"
+                onClick={(event) => {
+                  if (link.onClick) {
+                    link.onClick(event)
+                  } else {
+                    setIsMenuOpen(false)
+                  }
+                }}
               >
-                <span>Start My Company</span>
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="text-[#2d98ef]"
-                >
-                  <path
-                    d="M1 11L11 1M11 1H1M11 1V11"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </button>
-            </div>
+                {link.label}
+              </a>
+            ))}
+            <button
+              className="flex items-center justify-center gap-2 bg-white text-[#2d98ef] px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-all duration-300 shadow-sm mt-4 w-full"
+              onClick={handleStartCompanyClick}
+            >
+              <span>Start My Company</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-[#2d98ef]"
+              >
+                <path
+                  d="M1 11L11 1M11 1H1M11 1V11"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       )}
