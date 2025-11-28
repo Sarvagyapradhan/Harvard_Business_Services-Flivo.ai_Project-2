@@ -32,27 +32,11 @@ const Footer: React.FC = () => {
           {/* Left Section - Logo and Company Info */}
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
-              {/* Footer Logo */}
-              <div className="relative w-16 h-16 lg:w-20 lg:h-20 flex-shrink-0">
-                <div className="absolute inset-0 rounded-full bg-blue-600 border-2 border-gray-400"></div>
-                <div className="absolute inset-1 rounded-full bg-red-600"></div>
-                <div className="absolute inset-3 rounded-full bg-yellow-400 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-blue-600 text-xs font-bold">HBS</div>
-                    <div className="text-blue-600 text-[6px] font-bold">EST. 1991</div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Company Name */}
-              <div className="flex flex-col">
-                <h2 className="text-white font-serif font-bold text-2xl lg:text-3xl leading-tight">
-                  HARVARD
-                </h2>
-                <p className="text-white text-sm lg:text-base font-light">
-                  BUSINESS SERVICES, INC.
-                </p>
-              </div>
+              <img
+                src="/logo.svg"
+                alt="Harvard Business Services logo"
+                className="h-12 sm:h-16 lg:h-20 w-auto object-contain"
+              />
             </div>
 
             {/* Address */}

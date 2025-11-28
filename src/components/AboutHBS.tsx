@@ -18,12 +18,12 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
         <section className="relative w-full flex items-start justify-center overflow-visible bg-[url('/HBS%20Blog/background.jpg')] bg-cover bg-center bg-no-repeat">
           <div className="absolute inset-0 bg-[linear-gradient(0deg,_rgba(0,0,0,0.4),_rgba(0,0,0,0.4))]" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,_rgba(72,159,232,0.4)_70.51%,_#F2F2F2_94.58%)]" />
-          <div className="relative max-w-[1440px] w-full h-[474px] mx-auto px-6 lg:px-12 flex items-center justify-center text-white">
+          <div className="relative max-w-[1440px] w-full min-h-[474px] h-auto py-20 mx-auto px-6 lg:px-12 flex items-center justify-center text-white">
             <div className="flex flex-col items-center text-center gap-6">
-              <h1 className="text-[40px] sm:text-[48px] lg:text-[54px] font-bold leading-tight">
+              <h1 className="text-[40px] sm:text-[48px] lg:text-[54px] font-bold leading-tight animate-fade-in-up">
                 About Harvard Business Services
               </h1>
-              <p className="text-base sm:text-lg max-w-2xl">
+              <p className="text-base sm:text-lg max-w-2xl animate-fade-in-up delay-75">
                 Discover the people, processes, and purpose that drive the premier Delaware filing partner
                 trusted by more than 3,00,000 entrepreneurs worldwide.
               </p>
@@ -55,15 +55,16 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
 
         {/* Replicated Section 2 from HBS Blog */}
         <section className="w-full bg-[#F4F6F9] py-8">
-          <div className="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col justify-start">
-            <div className="flex flex-col lg:flex-row gap-10">
-              <aside className="w-full lg:w-[280px] bg-[#2D89D8] rounded-[4px] px-6 py-8 shadow-[0px_12px_30px_rgba(15,23,42,0.16)]">
+          <div className="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col justify-start min-h-screen h-auto">
+            <div className="flex flex-col lg:flex-row gap-10 h-full items-stretch">
+              <aside className="w-full lg:w-[280px] min-h-full bg-[#2D89D8] rounded-[4px] px-6 py-8 shadow-[0px_12px_30px_rgba(15,23,42,0.16)] flex flex-col animate-slide-in-left">
                 <h3 className="text-white text-2xl font-bold mb-6">Blog Categories</h3>
                 <div className="flex flex-col gap-3">
-                  {blogCategories.map((category) => (
+                  {blogCategories.map((category, index) => (
                     <button
                       key={category}
-                      className="w-full text-left bg-white text-[#2D89D8] font-semibold rounded-full px-4 py-2 text-sm shadow-[0_6px_18px_rgba(15,23,42,0.12)] hover:bg-blue-50 transition"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                      className="w-full text-left bg-white text-[#2D89D8] font-semibold rounded-full px-4 py-2 text-sm shadow-[0_6px_18px_rgba(15,23,42,0.12)] hover:bg-blue-50 transition-all duration-300 hover:translate-x-1 animate-fade-in-left fill-mode-backwards"
                     >
                       {category}
                     </button>
@@ -71,20 +72,27 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
                 </div>
               </aside>
 
-              <div className="flex-1 min-h-[2695px] relative overflow-visible">
-                <div className="pointer-events-none absolute inset-0 bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top]" />
-                <div className="pointer-events-none absolute inset-0 bg-[rgba(0,0,0,0.6)]" />
+              <div className="flex-1 relative overflow-visible animate-fade-in-up delay-200">
+                <div className="pointer-events-none absolute inset-0 bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top] hidden lg:block" />
+                <div className="pointer-events-none absolute inset-0 bg-[rgba(0,0,0,0.6)] hidden lg:block" />
 
-                <div className="pointer-events-none absolute inset-y-0 left-full w-[120vw] bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top]" />
-                <div className="pointer-events-none absolute inset-y-0 left-full w-[120vw] bg-[rgba(0,0,0,0.6)]" />
+                <div className="pointer-events-none absolute inset-y-0 left-full w-[120vw] bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top] hidden lg:block" />
+                <div className="pointer-events-none absolute inset-y-0 left-full w-[120vw] bg-[rgba(0,0,0,0.6)] hidden lg:block" />
+                
+                {/* Mobile background handling */}
+                <div className="pointer-events-none absolute inset-0 bg-[url('/homepage/Section%204/background.png')] bg-cover bg-[position:center_top] lg:hidden rounded-xl" />
+                <div className="pointer-events-none absolute inset-0 bg-[rgba(0,0,0,0.6)] lg:hidden rounded-xl" />
 
                 <div className="relative z-10 w-full h-full">
                   {/* Glass overlay strip */}
-                  <div className="pointer-events-none absolute left-0 top-20 bottom-10 w-[200vw] bg-[rgba(132,132,132,0.3)] backdrop-blur-[25px] border border-white/20 border-l-transparent border-t-transparent border-b-transparent shadow-[0px_24px_48px_rgba(15,23,42,0.35)]" />
+                  <div className="pointer-events-none absolute left-0 top-20 bottom-10 w-[200vw] bg-[rgba(132,132,132,0.3)] backdrop-blur-[25px] border border-white/20 border-l-transparent border-t-transparent border-b-transparent shadow-[0px_24px_48px_rgba(15,23,42,0.35)] hidden lg:block" />
+                  
+                  {/* Mobile glass overlay */}
+                  <div className="pointer-events-none absolute inset-0 top-0 bottom-0 bg-[rgba(132,132,132,0.3)] backdrop-blur-[25px] border border-white/20 shadow-[0px_24px_48px_rgba(15,23,42,0.35)] lg:hidden rounded-xl" />
 
                   {/* Content on top of the glass panel */}
                   {/* Content is padded slightly below the start of the translucent blur strip */}
-                  <div className="relative w-full h-full flex justify-center px-4 sm:px-6 lg:px-10 pt-28 pb-10">
+                  <div className="relative w-full h-full flex justify-center px-4 sm:px-6 lg:px-10 pt-10 lg:pt-28 pb-10 lg:pb-20">
                     <div className="w-full max-w-[980px] flex flex-col gap-10 text-white">
                       {/* Founding story */}
                       <div className="space-y-4 text-[18px] sm:text-[20px] leading-relaxed">
@@ -149,12 +157,12 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
                         </div>
 
                         {/* Image card 1 - positioned slightly lower so it sits below the heading and around middle of the first paragraph */}
-                        <div className="w-full max-w-[320px] self-stretch mt-10 lg:mt-14">
-                          <div className="relative w-[290px] h-[290px] rounded-[10px] overflow-hidden shadow-[0px_18px_40px_rgba(0,0,0,0.5)] border border-white/15">
+                        <div className="w-full max-w-[320px] self-center lg:self-stretch mt-10 lg:mt-14 group">
+                          <div className="relative w-full max-w-[290px] aspect-square rounded-[10px] overflow-hidden shadow-[0px_18px_40px_rgba(0,0,0,0.5)] border border-white/15 transition-transform duration-500 hover:scale-105 hover:rotate-1">
                             <img
                               src="/About%20HBS/card1.png"
                               alt="Business consultation at desk"
-                              className="h-full w-full object-cover"
+                              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                             />
                             {/* Blue gradient overlay to match design */}
                             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(72,159,232,0.8)_84.31%)]" />
@@ -164,7 +172,7 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
 
                       {/* Client experience heading and full-width paragraph */}
                       <div className="space-y-4 text-[18px] sm:text-[20px] leading-relaxed">
-                        <button className="inline-flex items-center gap-2 bg-white text-[#1f7ac4] px-4 py-2 rounded-[6px] shadow-[0_10px_25px_rgba(15,23,42,0.35)] text-[18px] sm:text-[20px] font-semibold">
+                        <button className="inline-flex items-center gap-2 bg-white text-[#1f7ac4] px-4 py-2 rounded-[6px] shadow-[0_10px_25px_rgba(15,23,42,0.35)] text-[18px] sm:text-[20px] font-semibold hover:scale-105 transition-transform duration-300">
                           <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#1f7ac4]/10 text-[#1f7ac4]">
                             <svg
                               width="14"
@@ -192,26 +200,26 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
                       </div>
 
                       {/* Reviews card with image - positioned near the middle of the paragraph */}
-                      <div className="mt-6 flex justify-end">
-                        <div className="w-full max-w-[420px]">
+                      <div className="mt-6 flex justify-center lg:justify-end group perspective-1000">
+                        <div className="w-full max-w-[420px] transition-transform duration-500 group-hover:rotate-y-2 group-hover:rotate-x-2">
                           <div className="relative w-full rounded-[12px] shadow-[0px_26px_55px_rgba(0,0,0,0.6)] border border-white/20 bg-black/20 overflow-visible">
                             <div className="relative rounded-[12px] overflow-hidden">
                               <img
                                 src="/About%20HBS/card2.png"
                                 alt="Happy clients meeting with advisor"
-                                className="w-full h-[230px] sm:h-[260px] object-cover"
+                                className="w-full h-[230px] sm:h-[260px] object-cover transition-transform duration-700 group-hover:scale-105"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                             </div>
 
                             {/* Lift reviews badge slightly and offset it left so it overhangs the card */}
-                            <div className="absolute top-6 left-0 -translate-x-[60%] w-[525px]">
-                              <div className="h-[155px] w-full rounded-[16px] bg-[linear-gradient(90deg,#0baa66,#047045)] px-6 sm:px-10 py-6 shadow-[0px_24px_55px_rgba(0,0,0,0.55)] text-white flex flex-col gap-5">
-                                <span className="font-bold text-[42px] sm:text-[46px] leading-none tracking-tight">
+                            <div className="absolute top-6 left-0 lg:-translate-x-[60%] w-[90%] lg:w-[525px] translate-x-4 lg:translate-x-[-60%] z-20 transition-transform duration-500 group-hover:translate-y-[-10px]">
+                              <div className="h-auto lg:h-[155px] w-full rounded-[16px] bg-[linear-gradient(90deg,#0baa66,#047045)] px-6 sm:px-10 py-6 shadow-[0px_24px_55px_rgba(0,0,0,0.55)] text-white flex flex-col gap-5">
+                                <span className="font-bold text-[32px] sm:text-[42px] lg:text-[46px] leading-none tracking-tight">
                                   25,316 reviews
                                 </span>
-                                <div className="flex items-center gap-8">
-                                  <span className="inline-flex items-center gap-2 justify-center min-w-[160px] bg-white text-[#00B67A] px-5 py-1.5 rounded-[6px] text-[24px] font-semibold leading-none shadow-[0px_6px_15px_rgba(0,0,0,0.25)]">
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
+                                  <span className="inline-flex items-center gap-2 justify-center min-w-[160px] bg-white text-[#00B67A] px-5 py-1.5 rounded-[6px] text-[20px] sm:text-[24px] font-semibold leading-none shadow-[0px_6px_15px_rgba(0,0,0,0.25)]">
                                     <svg
                                       width="18"
                                       height="18"
@@ -227,7 +235,7 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
                                     </svg>
                                     Trustpilot
                                   </span>
-                                    <div className="flex items-center text-[#FACC15] text-[30px] gap-1.5">
+                                    <div className="flex items-center text-[#FACC15] text-[24px] sm:text-[30px] gap-1.5">
                                     {Array.from({ length: 5 }).map((_, index) => (
                                       <svg
                                         key={index}
@@ -241,7 +249,7 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
                                       </svg>
                                     ))}
                                   </div>
-                                  <span className="text-[40px] font-semibold leading-none">4.8</span>
+                                  <span className="text-[32px] sm:text-[40px] font-semibold leading-none">4.8</span>
                                 </div>
                               </div>
                             </div>
@@ -251,7 +259,7 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
 
                       {/* We're here to help + resource buttons */}
                       <div className="space-y-5 text-[18px] sm:text-[20px] leading-relaxed">
-                        <button className="inline-flex items-center gap-2 bg-white text-[#1f7ac4] px-4 py-2 rounded-[6px] shadow-[0_10px_25px_rgba(15,23,42,0.35)] text-[18px] sm:text-[20px] font-semibold">
+                        <button className="inline-flex items-center gap-2 bg-white text-[#1f7ac4] px-4 py-2 rounded-[6px] shadow-[0_10px_25px_rgba(15,23,42,0.35)] text-[18px] sm:text-[20px] font-semibold hover:scale-105 transition-transform duration-300">
                           <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#1f7ac4]/10 text-[#1f7ac4]">
                             <svg
                               width="14"
@@ -283,19 +291,20 @@ const AboutHBS: React.FC<AboutHBSProps> = ({ onNavigate }) => {
                             'Why Incorporate in Delaware?',
                             'About Delaware Franchise Tax',
                             'How to File a Corporation or LLC in Delaware',
-                          ].map((label) => (
+                          ].map((label, idx) => (
                               <button
                                 key={label}
-                               className="flex items-center justify-between rounded-[6px] bg-[#2d98ef] hover:bg-[#1f7ac4] text-white text-[18px] sm:text-[20px] font-semibold px-4 sm:px-5 py-3.5 shadow-[0px_14px_30px_rgba(15,23,42,0.6)] transition-colors duration-200"
+                                style={{ animationDelay: `${idx * 75}ms` }}
+                                className="flex items-center justify-between rounded-[6px] bg-[#2d98ef] hover:bg-[#1f7ac4] text-white text-[16px] sm:text-[18px] lg:text-[20px] font-semibold px-4 sm:px-5 py-3.5 shadow-[0px_14px_30px_rgba(15,23,42,0.6)] transition-all duration-300 hover:translate-x-1 group animate-fade-in-up fill-mode-backwards"
                             >
-                              <span>{label}</span>
+                              <span className="text-left">{label}</span>
                               <svg
                                 width="16"
                                 height="16"
                                 viewBox="0 0 12 12"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="flex-shrink-0"
+                                className="flex-shrink-0 ml-3 group-hover:translate-x-1 transition-transform"
                               >
                                 <path
                                   d="M4 2L8 6L4 10"
