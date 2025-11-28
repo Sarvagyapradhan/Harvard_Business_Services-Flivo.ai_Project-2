@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model StartCompanySubmission {
+  id          Int      @id @default(autoincrement())
+  titlePrefix String?
+  firstName   String
+  lastName    String
+  titleSuffix String?
+  email       String
+  verifyEmail String?
+  phoneNumber String
+  companyType String
+  companyName String
+  createdAt   DateTime @default(now())
+
+  @@map("start_company_submissions")
+}
+
+model AgentSinglePaymentSubmission {
+  id              Int      @id @default(autoincrement())
+  companyName     String
+  stateFileNumber String
+  createdAt       DateTime @default(now())
+
+  @@map("agent_single_payment_submissions")
+}
+
+model AgentMultiPaymentSubmission {
+  id            Int      @id @default(autoincrement())
+  accountNumber String
+  createdAt     DateTime @default(now())
+
+  @@map("agent_multi_payment_submissions")
+}
+
+model FranchiseSinglePaymentSubmission {
+  id          Int      @id @default(autoincrement())
+  title       String?
+  firstName   String
+  lastName    String
+  suffix      String?
+  email       String
+  verifyEmail String?
+  companyName String?
+  createdAt   DateTime @default(now())
+
+  @@map("franchise_single_payment_submissions")
+}
+
+model FranchiseMultiPaymentSubmission {
+  id          Int      @id @default(autoincrement())
+  title       String?
+  firstName   String
+  lastName    String
+  suffix      String?
+  countryCode String?
+  phoneNumber String
+  email       String
+  verifyEmail String?
+  companyName String?
+  createdAt   DateTime @default(now())
+
+  @@map("franchise_multi_payment_submissions")
+}
