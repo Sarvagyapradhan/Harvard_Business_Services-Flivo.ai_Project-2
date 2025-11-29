@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
       ></div>
       <div className="absolute inset-0 bg-slate-900/95"></div>
       {/* Top Section */}
-      <div className="relative max-w-[1440px] h-[190px] mx-auto px-6 lg:px-12">
+      <div className="relative max-w-[1440px] h-auto min-h-[190px] mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 mb-6 pb-6 border-b border-white/15">
           {/* Left Section - Logo and Company Info */}
           <div className="flex flex-col gap-6">

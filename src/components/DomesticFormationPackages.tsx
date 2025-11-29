@@ -211,9 +211,9 @@ const DomesticFormationPackages: React.FC<DomesticFormationPackagesProps> = ({ o
                     WE OFFER 3 VALUE-PACKED OPTIONS!
                   </h2>
 
-                  <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 items-start pb-8 lg:pb-0 px-4 lg:px-0 -mx-4 lg:mx-0 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 items-start pb-8 lg:pb-0 px-4 lg:px-0 -mx-4 lg:mx-0 [&::-webkit-scrollbar]:hidden scrollbar-none">
                     {packages.map((pkg, idx) => (
-                      <div key={pkg.name} className="min-w-[85vw] sm:min-w-[380px] lg:min-w-0 snap-center flex flex-col relative transform hover:-translate-y-2 transition-transform duration-300 group" style={{ animationDelay: `${idx * 100}ms` }}>
+                      <div key={pkg.name} className={`min-w-[85vw] sm:min-w-[380px] lg:min-w-0 snap-center flex flex-col relative transform hover:-translate-y-2 transition-transform duration-300 group animate-fade-in-up-${idx + 1} delay-${idx * 100}`}>
                         <div className="flex-1 bg-white rounded-lg overflow-hidden shadow-xl flex flex-col h-full">
                           {/* Card Header & Description Combined */}
                           <div className={`${pkg.headerColor} px-5 py-5 flex flex-col min-h-[210px] h-auto`}>
@@ -378,7 +378,7 @@ const DomesticFormationPackages: React.FC<DomesticFormationPackagesProps> = ({ o
            <div className="absolute top-0 left-0 right-0 h-[300px] bg-[#69a6db] lg:hidden"></div>
 
           <div className="relative lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-[90px] w-full max-w-[1325px] lg:h-[335px] z-10">
-            <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 items-start lg:gap-4 px-4 lg:px-6 pb-8 lg:pb-0 -mx-0 lg:mx-0 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 items-start lg:gap-4 px-4 lg:px-6 pb-8 lg:pb-0 -mx-0 lg:mx-0 [&::-webkit-scrollbar]:hidden scrollbar-none">
             {[
               {
                 name: 'Lorenzo Casto',
