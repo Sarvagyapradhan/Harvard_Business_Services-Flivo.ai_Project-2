@@ -22,3 +22,44 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# System files
+AppData/
+NTUSER.DAT*
+ntuser.*
+*.regtrans-ms
+*.LOG*
+*.LOG
+*.ini
+Contacts/
+Downloads/
+Favorites/
+Links/
+Music/
+OneDrive/
+Saved Games/
+Searches/
+Videos/
+Documents/
+Local Settings/
+My Documents/
+NetHood/
+PrintHood/
+Recent/
+SendTo/
+Start Menu/
+Templates/
+.android/
+.antigravity/
+.codeium/
+.cursor/
+.gemini/
+.gitconfig
+.gradle/
+.lesshst
+.mcp-auth/
+.software/
+.wakatime/
+.windsurf/
+.EasyOCR/
+texput.*
