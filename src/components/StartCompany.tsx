@@ -240,7 +240,7 @@ const StartCompany: React.FC<StartCompanyProps> = ({ onNavigate }) => {
                               'Delaware Non-Profit Corporation (501c3)',
                               'Delaware Series Limited Liability Company (Series LLC)',
                               'Delaware Limited Partnership (LP)'
-                            ].map((option, index) => (
+                            ].map((option) => (
                               <label
                                 key={option}
                                 className="flex items-center justify-between gap-4 px-4 sm:px-6 py-3 hover:bg-[#F8FAFC] cursor-pointer"
