@@ -230,7 +230,7 @@ const LearningCenter: React.FC<LearningCenterProps> = ({ onNavigate }) => {
           </div>
         </section>
 
-        {learningSections.map((section, index) => (
+        {learningSections.map((section) => (
           <section
             key={section.id}
             data-id={section.id}
